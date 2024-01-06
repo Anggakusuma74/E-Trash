@@ -147,7 +147,7 @@ public class Registration extends javax.swing.JFrame {
 
     // Berikan feedback kepada pengguna
     if (registrasiBerhasil) {
-        JOptionPane.showMessageDialog(this, "Registrasi berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         // Tambahkan logika lain yang diperlukan setelah registrasi berhasil
     } else {
         JOptionPane.showMessageDialog(this, "Registrasi gagal!", "Error", JOptionPane.ERROR_MESSAGE);

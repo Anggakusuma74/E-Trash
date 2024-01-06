@@ -168,10 +168,10 @@ public class Login extends javax.swing.JFrame {
     boolean registrasiBerhasil = prosesRegistrasi(email, password);
 
     if (registrasiBerhasil) {
-        JOptionPane.showMessageDialog(this, "Registrasi berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         // Tambahkan logika lain yang diperlukan setelah registrasi berhasil
     } else {
-        JOptionPane.showMessageDialog(this, "Registrasi gagal!", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registrasi gagal", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
@@ -235,7 +235,7 @@ public class Login extends javax.swing.JFrame {
                 return true;
             } else {
                 // Authentication failed
-                JOptionPane.showMessageDialog(this, "Email atau Password salah", "Login Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Email atau Password salah!", "Login Failed", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
