@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 // Kelas untuk mengelola koneksi ke database MySQL
 public class MySqlConnection {
     // URL database
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/pp2_membership";
+    private final static String DB_URL = "jdbc:mysql://localhost:3306/etrash";
     // Username database
     private final static String DB_USER = "root";
     // Password database
