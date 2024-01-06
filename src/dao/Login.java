@@ -42,9 +42,11 @@ public class Login extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
+        btnRegistration = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Login");
 
         jLabel2.setText("Email");
@@ -58,6 +60,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btnRegistration.setText("Registration");
+        btnRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -65,12 +74,12 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnRegistration)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnLogin))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -81,7 +90,10 @@ public class Login extends javax.swing.JFrame {
                                         .addGap(31, 31, 31)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtEmail)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))))
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel1)))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,8 +110,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
-                .addComponent(btnLogin)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(btnRegistration))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,6 +148,32 @@ public class Login extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
+                                                   
+    // Open the Registration form
+    Registration registrationForm = new Registration();
+    registrationForm.setVisible(true);
+    // Close the current Login form
+    this.dispose();
+        
+    String email = txtEmail.getText();
+    String password = String.valueOf(txtPassword.getPassword());
+
+    if (email.isEmpty() || password.isEmpty()) {
+        return;
+    }
+
+    // Cek registrasi di database
+    boolean registrasiBerhasil = prosesRegistrasi(email, password);
+
+    if (registrasiBerhasil) {
+        JOptionPane.showMessageDialog(this, "Registrasi berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        // Tambahkan logika lain yang diperlukan setelah registrasi berhasil
+    } else {
+        JOptionPane.showMessageDialog(this, "Registrasi gagal", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnRegistrationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +212,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegistration;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -198,6 +239,23 @@ public class Login extends javax.swing.JFrame {
                 return false;
             }
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+    }
+
+    private boolean prosesRegistrasi(String email, String password) {
+    String query = "INSERT INTO pengguna (email, password) VALUES (?, ?)";
+    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, password);
+
+        int rowsInserted = preparedStatement.executeUpdate();
+
+        // Check if the registration was successful
+        return rowsInserted > 0;
     } catch (SQLException e) {
         e.printStackTrace();
         return false;
