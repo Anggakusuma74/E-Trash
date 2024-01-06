@@ -138,7 +138,7 @@ public class Registration extends javax.swing.JFrame {
 
     // Validasi input (Anda dapat menyesuaikan validasi sesuai kebutuhan)
     if (email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Email dan Password harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Email dan Password harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
@@ -150,7 +150,7 @@ public class Registration extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Registrasi berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         // Tambahkan logika lain yang diperlukan setelah registrasi berhasil
     } else {
-        JOptionPane.showMessageDialog(this, "Registrasi gagal", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registrasi gagal!", "Error", JOptionPane.ERROR_MESSAGE);
         // Tambahkan logika lain yang diperlukan jika registrasi gagal
     }
 }

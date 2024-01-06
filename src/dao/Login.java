@@ -171,7 +171,7 @@ public class Login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Registrasi berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         // Tambahkan logika lain yang diperlukan setelah registrasi berhasil
     } else {
-        JOptionPane.showMessageDialog(this, "Registrasi gagal", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registrasi gagal!", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
