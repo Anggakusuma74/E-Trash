@@ -30,6 +30,7 @@ public class MenuProfile extends javax.swing.JFrame {
         jpheader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpmenu = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,15 +57,29 @@ public class MenuProfile extends javax.swing.JFrame {
 
         jpmenu.setBackground(new java.awt.Color(255, 153, 102));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpmenuLayout = new javax.swing.GroupLayout(jpmenu);
         jpmenu.setLayout(jpmenuLayout);
         jpmenuLayout.setHorizontalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpmenuLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpmenuLayout.setVerticalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(jpmenuLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jButton1)
+                .addContainerGap(413, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpFrameLayout = new javax.swing.GroupLayout(jpFrame);
@@ -83,7 +98,7 @@ public class MenuProfile extends javax.swing.JFrame {
             .addGroup(jpFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpheader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -101,6 +116,13 @@ public class MenuProfile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MenuHome mh = new MenuHome();
+        mh.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +160,7 @@ public class MenuProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpFrame;
     private javax.swing.JPanel jpheader;
