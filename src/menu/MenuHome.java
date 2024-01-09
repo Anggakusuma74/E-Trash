@@ -4,6 +4,7 @@
  */
 package menu;
 
+import dao.ChangePassword;
 import dao.Login;
 
 /**
@@ -74,7 +75,7 @@ public class MenuHome extends javax.swing.JFrame {
         });
 
         jprofile.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jprofile.setText("PROFILE");
+        jprofile.setText("CHANGE PASSWORD");
         jprofile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jprofileActionPerformed(evt);
@@ -99,8 +100,6 @@ public class MenuHome extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\raden\\OneDrive\\Documents\\NetBeansProjects\\E-Trash\\src\\img\\logo.png")); // NOI18N
-
         javax.swing.GroupLayout jpmenuLayout = new javax.swing.GroupLayout(jpmenu);
         jpmenu.setLayout(jpmenuLayout);
         jpmenuLayout.setHorizontalGroup(
@@ -108,7 +107,7 @@ public class MenuHome extends javax.swing.JFrame {
             .addGroup(jpmenuLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jcategory, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                    .addComponent(jcategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jprofile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jjenis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
@@ -163,7 +162,7 @@ public class MenuHome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,8 +181,8 @@ public class MenuHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jcategoryActionPerformed
 
     private void jprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jprofileActionPerformed
-        MenuProfile mp = new MenuProfile();
-        mp.setVisible(true);
+        ChangePassword cp = new ChangePassword();
+        cp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jprofileActionPerformed
 
