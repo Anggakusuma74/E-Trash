@@ -4,17 +4,80 @@
  */
 package menu;
 
-/**
- *
- * @author raden
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+        
 public class MenuProfile extends javax.swing.JFrame {
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/etrash";
+    private static final String DB_USER = "root";
+    private static final String DB_PASS = "";
+    private Connection connection;
+    
+    // Initialize the DefaultTableModel
+    DefaultTableModel model;
+ 
+    
+    private void fetchDataFromDatabase() {
+        try {
+            // Establish the database connection
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
+            // Create a PreparedStatement to execute a query
+            String query = "SELECT * FROM profile";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // Execute the query and retrieve the ResultSet
+            ResultSet resultSet = statement.executeQuery();
+
+            // Clear the existing data in the table
+            model.setRowCount(0);
+
+            // Populate the table with data from the ResultSet
+            while (resultSet.next()) {
+                String idProfile = resultSet.getString("id_profile_column_name");
+                String username = resultSet.getString("username_column_name");
+                String alamat = resultSet.getString("alamat_column_name");
+                String tanggalLahir = resultSet.getString("tanggal_lahir_column_name");
+
+                // Add a row to the table model
+                model.addRow(new Object[]{idProfile, username, alamat, tanggalLahir});
+            }
+
+            // Close the ResultSet and PreparedStatement
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            // Handle any SQL exceptions (e.g., show an error message)
+            JOptionPane.showMessageDialog(this, "Error fetching data from database: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            // Close the database connection
+            try {
+                if (connection != null && !connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                // Handle any SQL exceptions (e.g., show an error message)
+                JOptionPane.showMessageDialog(this, "Error closing database connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }   
     /**
      * Creates new form MenuProfile
      */
     public MenuProfile() {
         initComponents();
+        String[] columnNames = {"ID Profile", "Usernama", "Alamat", "Tanggal Lahir"};
+        model = new DefaultTableModel(columnNames, 0);
+        
+        // Set the model to the table
+        TableProfile.setModel(model);
     }
 
     /**
@@ -32,6 +95,20 @@ public class MenuProfile extends javax.swing.JFrame {
         jpmenu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
+        txtTanggallahir = new javax.swing.JTextField();
+        jEdit = new javax.swing.JButton();
+        jSimpan = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableProfile = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        id_user = new javax.swing.JTextField();
+
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jpheader.setBackground(new java.awt.Color(33, 37, 41));
@@ -47,7 +124,7 @@ public class MenuProfile extends javax.swing.JFrame {
             jpheaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpheaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpheaderLayout.setVerticalGroup(
@@ -65,21 +142,120 @@ public class MenuProfile extends javax.swing.JFrame {
             }
         });
 
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("USERNAME");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("ALAMAT");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("TANGGAL LAHIR");
+
+        jEdit.setBackground(new java.awt.Color(255, 255, 0));
+        jEdit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jEdit.setText("EDIT");
+        jEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditActionPerformed(evt);
+            }
+        });
+
+        jSimpan.setBackground(new java.awt.Color(51, 204, 0));
+        jSimpan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jSimpan.setText("SIMPAN");
+        jSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSimpanActionPerformed(evt);
+            }
+        });
+
+        TableProfile.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TableProfile);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("ID USER");
+
+
         javax.swing.GroupLayout jpmenuLayout = new javax.swing.GroupLayout(jpmenu);
         jpmenu.setLayout(jpmenuLayout);
         jpmenuLayout.setHorizontalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpmenuLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+
+                .addGap(18, 18, 18)
+                .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpmenuLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtTanggallahir, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jEdit)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jSimpan))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpmenuLayout.createSequentialGroup()
+                        .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(62, 62, 62)
+                        .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(id_user, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(34, Short.MAX_VALUE))
+
         );
         jpmenuLayout.setVerticalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpmenuLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+
+                .addGap(16, 16, 16)
                 .addComponent(jButton1)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpmenuLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpmenuLayout.createSequentialGroup()
+                                .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtTanggallahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpmenuLayout.createSequentialGroup()
+                                .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jSimpan)
+                                    .addComponent(jEdit))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(247, 247, 247))
+                    .addGroup(jpmenuLayout.createSequentialGroup()
+                        .addComponent(id_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+
         );
 
         javax.swing.GroupLayout jpFrameLayout = new javax.swing.GroupLayout(jpFrame);
@@ -96,11 +272,13 @@ public class MenuProfile extends javax.swing.JFrame {
         jpFrameLayout.setVerticalGroup(
             jpFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFrameLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpheader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+
+                .addComponent(jpmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,7 +289,7 @@ public class MenuProfile extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpFrame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -123,6 +301,17 @@ public class MenuProfile extends javax.swing.JFrame {
         mh.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+
+    private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jEditActionPerformed
+
+    private void jSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSimpanActionPerformed
+        // TODO add your handling code here:
+        fetchDataFromDatabase();
+    }//GEN-LAST:event_jSimpanActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -160,10 +349,23 @@ public class MenuProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JTable TableProfile;
+    private javax.swing.JTextField id_user;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jEdit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jSimpan;
     private javax.swing.JPanel jpFrame;
     private javax.swing.JPanel jpheader;
     private javax.swing.JPanel jpmenu;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextField txtTanggallahir;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
