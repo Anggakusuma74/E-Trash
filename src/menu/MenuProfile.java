@@ -94,6 +94,7 @@ public class MenuProfile extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jpmenu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -106,6 +107,7 @@ public class MenuProfile extends javax.swing.JFrame {
         TableProfile = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         id_user = new javax.swing.JTextField();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +141,7 @@ public class MenuProfile extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("USERNAME");
@@ -183,11 +186,13 @@ public class MenuProfile extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("ID USER");
 
+
         javax.swing.GroupLayout jpmenuLayout = new javax.swing.GroupLayout(jpmenu);
         jpmenu.setLayout(jpmenuLayout);
         jpmenuLayout.setHorizontalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpmenuLayout.createSequentialGroup()
+
                 .addGap(18, 18, 18)
                 .addGroup(jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
@@ -213,10 +218,12 @@ public class MenuProfile extends javax.swing.JFrame {
                                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(id_user, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(34, Short.MAX_VALUE))
+
         );
         jpmenuLayout.setVerticalGroup(
             jpmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpmenuLayout.createSequentialGroup()
+
                 .addGap(16, 16, 16)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32)
@@ -248,6 +255,7 @@ public class MenuProfile extends javax.swing.JFrame {
                     .addGroup(jpmenuLayout.createSequentialGroup()
                         .addComponent(id_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+
         );
 
         javax.swing.GroupLayout jpFrameLayout = new javax.swing.GroupLayout(jpFrame);
@@ -267,8 +275,10 @@ public class MenuProfile extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpheader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+
                 .addComponent(jpmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(132, 132, 132))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,6 +302,7 @@ public class MenuProfile extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
     private void jEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jEditActionPerformed
@@ -300,6 +311,7 @@ public class MenuProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
         fetchDataFromDatabase();
     }//GEN-LAST:event_jSimpanActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -337,6 +349,7 @@ public class MenuProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JTable TableProfile;
     private javax.swing.JTextField id_user;
     private javax.swing.JButton jButton1;
