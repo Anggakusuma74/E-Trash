@@ -146,7 +146,7 @@ public class Login extends javax.swing.JFrame {
         boolean loginBerhasil = prosesLogin(email, password);
 
         if (loginBerhasil) {
-            JOptionPane.showMessageDialog(this, "Login berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Login berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             // Tambahkan logika lain yang diperlukan setelah login berhasil
             // Navigasi ke MenuHome setelah login berhasil
             MenuHome menuHome = new MenuHome();
