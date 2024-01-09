@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import menu.MenuHome;
 /**
  *
  * @author ASUS
@@ -95,7 +96,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(177, 177, 177)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,6 +148,11 @@ public class Login extends javax.swing.JFrame {
         if (loginBerhasil) {
             JOptionPane.showMessageDialog(this, "Login berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             // Tambahkan logika lain yang diperlukan setelah login berhasil
+            // Navigasi ke MenuHome setelah login berhasil
+            MenuHome menuHome = new MenuHome();
+            menuHome.setVisible(true);
+            // Tutup layar login
+            this.dispose();
         } 
         
     }//GEN-LAST:event_btnLoginActionPerformed
