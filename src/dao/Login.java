@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import menu.MenuHome;
 /**
  *
  * @author ASUS
@@ -46,8 +47,10 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Login");
+        jPanel1.setBackground(new java.awt.Color(255, 153, 102));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("LOGIN");
 
         jLabel2.setText("Email");
 
@@ -93,7 +96,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(177, 177, 177)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,7 +116,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnRegistration))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,6 +148,11 @@ public class Login extends javax.swing.JFrame {
         if (loginBerhasil) {
             JOptionPane.showMessageDialog(this, "Login berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             // Tambahkan logika lain yang diperlukan setelah login berhasil
+            // Navigasi ke MenuHome setelah login berhasil
+            MenuHome menuHome = new MenuHome();
+            menuHome.setVisible(true);
+            // Tutup layar login
+            this.dispose();
         } 
         
     }//GEN-LAST:event_btnLoginActionPerformed
