@@ -49,7 +49,9 @@ public class ChangePassword extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Change Password");
+
+        jLabel1.setText("CHANGE PASSWORD");
+
 
         jLabel2.setText("Old Password");
 

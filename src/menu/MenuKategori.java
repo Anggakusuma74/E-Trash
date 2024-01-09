@@ -103,22 +103,22 @@ public class MenuKategori extends javax.swing.JFrame {
 
     // Metode untuk menghapus data di database
     private void deleteDataFromDatabase() {
-        try {
-            String query = "DELETE FROM kategori WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, Id_Kategori.getText());
+    try {
+        String query = "DELETE FROM kategori WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, Id_Kategori.getText());
 
-            int result = preparedStatement.executeUpdate();
-            if (result > 0) {
-                JOptionPane.showMessageDialog(this, "Data deleted successfully");
-                loadDataToTable();
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed to delete data", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error deleting data from database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        int result = preparedStatement.executeUpdate();
+        if (result > 0) {
+            JOptionPane.showMessageDialog(this, "Data deleted successfully");
+            loadDataToTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to delete data", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error deleting data from database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
 
     // Metode untuk mencari data di database
     private void searchDataInDatabase() {
